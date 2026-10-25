@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2ecdd">
+  <meta name="description" content="医学生模拟器：从本科到博士，一周一回合的医学人生。序章「白袍之前」，创建你的新生档案。">
+  <meta name="color-scheme" content="light">
+  <title>医学生模拟器 · 序章：白袍之前</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.4 4.6a2.8 2.8 0 0 0-4.9 1.8 3 3 0 0 0-1.1 5.4 3.3 3.3 0 0 0 2.1 5.7c.4 1.2 1.5 2 2.8 2 1.2 0 2.3-.8 2.7-2V6.5a2.4 2.4 0 0 0-1.6-1.9Z"/><path d="M14.6 4.6a2.8 2.8 0 0 1 4.9 1.8 3 3 0 0 1 1.1 5.4 3.3 3.3 0 0 1-2.1 5.7c-.4 1.2-1.5 2-2.8 2-1.2 0-2.3-.8-2.7-2V6.5a2.4 2.4 0 0 1 1.6-1.9Z"/><path d="M7.4 9h-1.6M7.4 13H5.2M16.6 9h1.6M16.6 13h2.2"/></symbol>
+    <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.4 1 1.1 1 1.9V17h5.2v-1.3c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3Z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3l1.6 5.4L18 10l-5.4 1.6L11 17l-1.6-5.4L4 10l5.4-1.6L11 3Z"/><path d="M18.5 15.5l.6 2.4 2.4.6-2.4.6-.6 2.4-.6-2.4-2.4-.6 2.4-.6.6-2.4Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.2-2.8 7.6-7 9.5-4.2-1.9-7-5.3-7-9.5V6l7-3Z"/><path d="M7.8 12h2.4l1.1-2.2 1.8 4.4 1-2.2h2"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6.2 12 6.2 21.5 12 21.5 12 18 17.8 12 17.8 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9 9.3c0-1 1.3-1.7 3-1.7s3 .7 3 1.7-1.3 1.7-3 1.7-3 .7-3 1.7 1.3 1.7 3 1.7 3-.7 3-1.7M12 6.2v11.6"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18M10 12v2h4v-2"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3v-9Z"/><path d="M9 21v-6h6v6M7 12h.01M17 12h.01"/></symbol>
+    <symbol id="i-caduceus" viewBox="0 0 24 24"><path d="M12 3v18M8 21h8"/><path d="M8 6c0-1.5 1.5-3 4-3s4 1.5 4 3-1.5 3-4 3-4 1.5-4 3 1.5 3 4 3 4 1.5 4 3-1.5 3-4 3-4-1.5-4-3"/><path d="M6 12h12"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9l4-6Z"/><path d="M2 9h20M9 3l3 18 3-18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="8" width="17" height="8" rx="2"/><path d="M22 10.5v3M6 11v2M10 11v2M14 11v2"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.1A8.6 8.6 0 0 1 8.9 4a8.6 8.6 0 1 0 11.1 11.1Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.8 2.2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 9A7 7 0 0 1 19 7l1 5M18 15a7 7 0 0 1-12.9 2L4 12"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4.5h6a3 3 0 0 1 3 3V21a3 3 0 0 0-3-3H4V4.5Z"/><path d="M20 4.5h-6a3 3 0 0 0-3 3V21a3 3 0 0 1 3-3h6V4.5Z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8a2.8 2.8 0 0 0-4-4L4 15l-1 5h1Z"/><path d="M13.5 5.5l5 5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></symbol>
+    <symbol id="i-seal" viewBox="0 0 24 24"><path d="M12 2l2.4 2.1 3.2-.2.8 3.1 2.6 1.9-1.1 3 1.1 3-2.6 1.9-.8 3.1-3.2-.2L12 22l-2.4-2.1-3.2.2-.8-3.1L3 15l1.1-3L3 9l2.6-1.9.8-3.1 3.2.2L12 2Z"/><path d="M8.5 12l2.2 2.2 4.8-4.8"/></symbol>
+  </svg>
+
+  <div id="app">
+    <div class="boot-splash" role="status">
+      <div class="boot-cross" aria-hidden="true"></div>
+      <p>正在整理新生档案…</p>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog class="confirm-dialog" id="confirm-dialog">
+    <form method="dialog" class="confirm-shell">
+      <p class="dialog-eyebrow">CONFIRMATION</p>
+      <h2 id="confirm-title">确认操作</h2>
+      <p id="confirm-body" class="dialog-body"></p>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" value="cancel">先不要</button>
+        <button class="btn btn-danger" id="confirm-ok" value="confirm">确认</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript>
+    <div class="noscript-card">本游戏需要启用 JavaScript 才能建立学籍档案。请在浏览器设置中允许 JavaScript 后刷新页面。</div>
+  </noscript>
+
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
