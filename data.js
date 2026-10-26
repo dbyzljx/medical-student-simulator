@@ -296,6 +296,7 @@
       difficultyLabel: '轻松',
       competition: '较低',
       special: '标准',
+      gpaExcellent: 3.0,
       admissionCode: '02',
       desc: '你可能是这里最会考试的人。没有那么多聚光灯，也少有人催你跑。',
       line: '校门不算气派，但“医学院”三个字在阳光下很亮。'
@@ -311,6 +312,7 @@
       difficultyLabel: '标准',
       competition: '中等',
       special: '较多',
+      gpaExcellent: 3.2,
       admissionCode: '01',
       desc: '不显眼，也不垫底。你身边有一群和你差不多努力的人，谁也不肯先停。',
       line: '校园比想象中大。你跟着指示牌绕过两栋教学楼，才找到报到处。'
@@ -326,24 +328,26 @@
       difficultyLabel: '困难',
       competition: '激烈',
       special: '频繁',
+      gpaExcellent: 3.5,
       admissionCode: '98',
       desc: '录取通知书很好看，课程表和排名同样不好看。这里最不缺聪明人。',
       line: '迎新的横幅铺了一整条路，每个人看起来都像曾经的第一名。'
     },
     {
-      key: 'elite8',
+      key: 'qingbei',
       no: '04',
-      name: '老八校',
-      short: '老八校',
-      en: 'THE OLD EIGHT',
-      level: '医学老八校',
+      name: '清北',
+      short: '清北',
+      en: 'QINGBEI MEDICAL SCHOOLS',
+      level: '顶尖医学院',
       difficulty: 4,
-      difficultyLabel: '严苛',
-      competition: '极高',
+      difficultyLabel: '极难',
+      competition: '顶尖',
       special: '最高',
-      admissionCode: '08',
-      desc: '你走进了一间几乎所有人都曾考过第一名的教室。资源、机会和压力一起涌来。',
-      line: '你抬头看向那座老教学楼，忽然意识到，这里走出过很多你背过名字的人。'
+      gpaExcellent: 3.8,
+      admissionCode: '99',
+      desc: '你走进了一间几乎所有人都曾考过第一名的教室。这里聚着全国最聪明的一批人，也聚着最难承认的疲惫。',
+      line: '你抬头看向那座闻名已久的校门，忽然意识到，这里走出过很多你背过名字的人。'
     }
   ];
 
@@ -363,6 +367,37 @@
       attributeMin: 3,
       attributeMax: 10,
       intervalWeeks: 4
+    },
+    academicRules: {
+      gpaScale: 4,
+      gpaWeighting: 'credit-weighted',
+      excellentIsPostgraduateLine: true,
+      nationalScholarship: {
+        label: '国家奖学金',
+        minOffset: 0
+      },
+      provincialScholarship: {
+        label: '省级奖学金',
+        minOffset: -0.2,
+        maxOffset: 0
+      },
+      schoolScholarship: {
+        label: '校级奖学金',
+        minOffset: -0.3,
+        maxOffset: -0.2
+      },
+      inspirationalScholarship: {
+        label: '励志奖学金',
+        minOffset: -0.2,
+        families: ['orphan', 'poor'],
+        bonus: true
+      },
+      graduation: {
+        requiredElectiveCredits: 10,
+        requiredWaterCredits: 10,
+        requiresAllMainCourses: true,
+        requiresAllIdeologyCourses: true
+      }
     }
   };
 })();

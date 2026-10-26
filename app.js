@@ -154,9 +154,15 @@
     }) || null;
   }
 
+  function canonicalSchoolKey(key) {
+    // 兼容旧版“老八校”存档，展示层与后续逻辑统一使用清北。
+    return key === 'elite8' ? 'qingbei' : key;
+  }
+
   function findSchool(key) {
+    const normalized = canonicalSchoolKey(key);
     return SCHOOLS.find(function (item) {
-      return item.key === key;
+      return item.key === normalized;
     }) || null;
   }
 
@@ -368,7 +374,7 @@
     form.name = sanitizeName(raw.form.name);
     form.talent = findTalent(raw.form.talent) ? raw.form.talent : null;
     form.family = findFamily(raw.form.family) ? raw.form.family : null;
-    form.school = findSchool(raw.form.school) ? raw.form.school : null;
+    form.school = findSchool(raw.form.school) ? findSchool(raw.form.school).key : null;
     ATTRIBUTES.forEach(function (attribute) {
       const parsed = Number.parseInt(raw.form.attributes && raw.form.attributes[attribute.key], 10);
       form.attributes[attribute.key] = Number.isFinite(parsed)
@@ -416,6 +422,7 @@
     if (!findTalent(student.talent) || !findFamily(student.family) || !findSchool(student.school)) {
       return null;
     }
+    const canonicalSchool = findSchool(student.school).key;
     const status = raw.status === 'arrival' ? 'arrival' : 'complete';
     const year = clamp(Number(student.enrollYear) || DATA.year, 2000, 2100);
     let studentNo = String(student.studentNo || '').replace(/\s+/g, '');
@@ -428,7 +435,7 @@
       attributes: {},
       family: student.family,
       abilities: [],
-      school: student.school,
+      school: canonicalSchool,
       studentNo: studentNo,
       enrollYear: year
     };
@@ -1476,6 +1483,9 @@
       '<span>难度 <b>' +
       escapeHTML(school.difficultyLabel) +
       '</b></span>' +
+      '<span>保研线 <b>GPA ' +
+      school.gpaExcellent.toFixed(1) +
+      '</b></span>' +
       '</span>' +
       '</span>' +
       '<span class="school-side">' +
@@ -1498,10 +1508,19 @@
     return (
       '<div class="school-note">' +
       icon('info') +
-      '<span>每学年会结算一次学业排名。排名越靠前，越容易触发特殊事件；院校竞争越激烈，保持前列也越难。</span>' +
+      '<span>GPA 采用 4 分制、按课程学分加权。各校优秀线同时是保研线：二本 3.0 / 一本 3.2 / 985 3.5 / 清北 3.8。</span>' +
       '</div>' +
       '<div class="school-list">' +
       SCHOOLS.map(renderSchoolCard).join('') +
+      '</div>' +
+      '<div class="scholarship-rule">' +
+      '<p class="scholarship-rule-title">SCHOLARSHIP / 奖学金门槛</p>' +
+      '<div class="scholarship-rule-grid">' +
+      '<span><b>国家奖学金</b>达到优秀线</span>' +
+      '<span><b>省级奖学金</b>优秀线 − 0.2</span>' +
+      '<span><b>校级奖学金</b>优秀线 − 0.3</span>' +
+      '<span><b>励志奖学金</b>孤儿 / 贫困 + 达到省级档</span>' +
+      '</div>' +
       '</div>'
     );
   }
@@ -1617,6 +1636,8 @@
           escapeHTML(school.special) +
           '</b></span><span>难度 <b>' +
           escapeHTML(school.difficultyLabel) +
+          '</b></span><span>保研线 <b>GPA ' +
+          school.gpaExcellent.toFixed(1) +
           '</b></span>'
         : '') +
       '</div>' +
