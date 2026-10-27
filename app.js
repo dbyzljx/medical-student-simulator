@@ -456,7 +456,7 @@
     while (abilityCost(parsedStudent.abilities) > talent.abilityPoints && parsedStudent.abilities.length) {
       parsedStudent.abilities.pop();
     }
-    return {
+    const parsed = {
       v: STORAGE_VERSION,
       status: status,
       createdAt: raw.createdAt || new Date().toISOString(),
@@ -464,6 +464,10 @@
       completedAt: raw.completedAt || null,
       student: parsedStudent
     };
+    if (raw.game && raw.game.version) {
+      parsed.game = raw.game;
+    }
+    return parsed;
   }
 
   function persistDraftNow() {
@@ -674,6 +678,9 @@
   }
 
   function archiveStatusWord() {
+    if (state.save && state.save.game) {
+      return '本科在读';
+    }
     if (state.save && state.save.status === 'complete') {
       return '档案已归档';
     }
@@ -726,7 +733,14 @@
     if (hasSave) {
       rows.push(['院校', view && view.school ? view.school.name : '—']);
       rows.push(['天资', view && view.talent ? view.talent.name : '—']);
-      rows.push(['档案', state.save.status === 'complete' ? '序章 · 已完成' : '报到日 · 待续']);
+      rows.push([
+        '档案',
+        state.save.game
+          ? '本科 · 第 ' + state.save.game.time.week + ' 周'
+          : state.save.status === 'complete'
+            ? '序章 · 已完成'
+            : '报到日 · 待续'
+      ]);
     } else if (hasDraft) {
       rows.push(['天资', view && view.talent ? view.talent.name : '未选择']);
       rows.push(['院校', view && view.school ? view.school.name : '未选择']);
@@ -816,7 +830,11 @@
     let primaryLabel = '建立新生档案';
     if (hasSave) {
       primaryAction = 'resume-save';
-      primaryLabel = state.save.status === 'arrival' ? '继续报到序章' : '查看学籍档案';
+      primaryLabel = state.save.game
+        ? '继续本科 · 第 ' + state.save.game.time.week + ' 周'
+        : state.save.status === 'arrival'
+          ? '继续报到序章'
+          : '查看学籍档案';
     } else if (hasDraft) {
       primaryAction = 'resume-draft';
       primaryLabel = '继续填写新生档案';
@@ -2236,6 +2254,9 @@
       '</div>' +
       '</section>' +
       '<div class="result-actions">' +
+      '<a class="btn btn-primary" href="game.html">进入本科 · 第 1 周' +
+      icon('arrow-right') +
+      '</a>' +
       '<button type="button" class="btn btn-outline" data-action="view-letter">重看录取通知书' +
       icon('book') +
       '</button>' +
@@ -2247,9 +2268,11 @@
       '</div>' +
       '<section class="next-chapter" aria-label="下一阶段">' +
       '<div><p class="next-label">NEXT / CHAPTER 01</p>' +
-      '<h2>本科第一周：课程、出勤与第一场随机事件</h2>' +
-      '<p>序章到此结束。本科回合循环将在下一阶段接入，你的学籍档案与开局数值已经保存。</p></div>' +
-      '<span class="next-state">本科阶段 · 待开放</span>' +
+      '<h2>本科第一周：课程、出勤与第一场考试</h2>' +
+      '<p>主修课表、思政与水课选课、每周安排和隐藏健康已经接入。进入后先完成第一学期选课，再开始第 1 周。</p></div>' +
+      '<a class="btn btn-primary next-start" href="game.html">进入本科' +
+      icon('arrow-right') +
+      '</a>' +
       '</section>' +
       '</main>' +
       '</div>'
@@ -2330,6 +2353,10 @@
 
   function openSave() {
     if (!state.save) {
+      return;
+    }
+    if (state.save.game) {
+      window.location.href = 'game.html';
       return;
     }
     state.admissionOpen = false;

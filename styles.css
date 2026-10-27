@@ -6705,3 +6705,11 @@ p {
     background: var(--page);
   }
 }
+
+/* Prologue -> undergraduate CTA */
+.next-chapter .next-start {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  align-self: center;
+}
